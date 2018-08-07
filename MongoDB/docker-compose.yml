@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  mongo:
+    image: 'sameersbn/mongodb:latest'
+    ports:
+      - '27017:27017'
+    volumes:
+      - 'mongo:/data/db'

@@ -1,0 +1,58 @@
+version: '3.2'
+
+services:
+# there are 3 services namely
+#1. mysql-dev
+#2. sonarqube-dev
+#3. jenkins-dev
+
+#mysql
+  mysql-dev:
+    image: mysql:8.0.2
+    command: --default-authentication-plugin=mysql_native_password
+    #restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: testing
+      MYSQL_USER: sonar
+      MYSQL_PASSWORD: password
+    ports:
+      - 3306:3306
+    # volumes:
+    #   - "mysql-dev:./mysql"
+    # volume_driver: dvol
+
+#sonar
+  sonarqube-dev:
+    # image: sonarqube:7.1
+    build:
+      context: sonarqube/
+      dockerfile: Dockerfile
+    # environment:
+    #   SONARQUBE_JDBC_USERNAME: sonar
+    #   SONARQUBE_JDBC_PASSWORD: password
+    #   SONARQUBE_JDBC_URL: jdbc:mysql://localhost:3306/testing
+    ports:
+      - 9000:9000
+      - 9092:9092
+    container_name: sonarqube
+      
+
+#jenkins
+  jenkins-dev:
+    # image: jenkins:2.60.3
+    build:
+      context: jenkins/
+      dockerfile: Dockerfile
+    privileged: true
+    user: root
+    ports:
+      - 8888:8080
+      - 50000:50000
+    container_name: jenkins
+    volumes:
+      - /tmp/jenkins:/var/jenkins_home #Remember that, the tmp directory is designed to be wiped on system reboot.
+      - /var/run/docker.sock:/var/run/docker.sock
+    # depends_on:
+    #   - mysql-dev
+    #   - sonarqube-dev

@@ -1,0 +1,16 @@
+version: '3.2'
+services:
+  jenkins-dev:
+    # image: jenkins:2.60.3
+    build:
+      context: jenkins/
+      dockerfile: Dockerfile
+    privileged: true
+    user: root
+    ports:
+      - 8888:8080
+      - 50000:50000
+    container_name: jenkins
+    volumes:
+      - /tmp/jenkins:/var/jenkins_home #Remember that, the tmp directory is designed to be wiped on system reboot.
+      - /var/run/docker.sock:/var/run/docker.sock
