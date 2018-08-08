@@ -1,0 +1,23 @@
+version: '3.2'
+
+services:
+  oracle-xe-dev:
+  image: sath89/oracle-12c
+  
+  envitonment:
+    USER: sys
+    PASS: oracle
+    HOST: oracle-database
+    #PORT: 1521
+    SID: XE
+    #HTTP_PORT: 8080
+    IMPORT_FROM_VOLUME: true
+    # IMPDP_OPTIONS: REMAP_TABLESPACE=FOO:BAR
+
+  ports:
+    - 1521:1521
+    - 8999:8080
+
+  valume: 
+    - /my/oracle/data:/u01/app/oracle 
+    - /my/oracle/init/SCRIPTSorSQL:/docker-entrypoint-initdb.d
