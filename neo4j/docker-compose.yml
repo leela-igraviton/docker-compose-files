@@ -1,8 +1,20 @@
 version: '3.2'
 services:
-  neo4j:
-  image: neo4j:3.0          ## we use neo4j v3
-  ports:                    ## publish ports to have Web UI
-   - "17474:7474"
-  volumes:                  ## adds folder with login/password
-   - ./db/dbms:/data/dbms
+
+  neo4j-dev:
+
+  # container_name: neo4j-dev
+  ## we use neo4j v3
+  build:
+      context: neo4j/
+      dockerfile: Dockerfile
+  
+  ## publish ports to have Web UI
+  # ports:                    
+  #   - '7474:7474'
+  #   - '7473:7473'
+  #   - '7687:7687'
+
+  ## adds folder with login/password
+  # volumes:                  
+  #  - $HOME/neo4j/data:/data \

@@ -1,7 +1,11 @@
 version: '3.2'
 
 services:
+
   weblogic-dev:
+
+  container_name: weblogic-dev
+  
   image: ismaleiva90/weblogic12:latest
 
   #To start the docker machine with 7001, 7002 and 5556 ports opened:

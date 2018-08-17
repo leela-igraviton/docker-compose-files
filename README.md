@@ -1,19 +1,28 @@
-#All the docker excutables commands are simplyfied and composed in docker-compose.
+<b>All the docker excutables commands are simplyfied and composed in docker-compose.</b>
 
-#open the terminal and run the command where docker-comopse.yml located.
+<b>Install docker-compose in ubuntu
+<xmp>$ sudo apt install docker-compose</xmp>
 
-$ docker-compose up -d
+<b>open the terminal and run the command where docker-comopse.yml located.</b>
+
+<xmp>$ docker-compose up -d</xmp>
 
 
-#Start the container with logs
+<b>Start the container with logs</b>
 
-$ docker-compose up --build
+<xmp>$ docker-compose up --build</xmp>
 
-#stop the docker container
+<b>stop the docker container</b>
 
-$ docker-compose down
+<xmp>$ docker-compose down</xmp>
 
-#welogic details
-http://localhost:49163/console
-User: weblogic
-Pass: welcome1
+<b>welogic details</b>
+http://localhost:49163/console<br/>
+User: weblogic<br/>
+Pass: welcome1<br/>
+
+<b>Connect to Oracle Enterprise Management console with following settings:</b>
+http://localhost:8999/em<br/>
+user: sys<br/>
+password: oracle<br/>
+connect as sysdba: true<br/>

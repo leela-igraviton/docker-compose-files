@@ -2,6 +2,7 @@ version: '3.2'
 
 services:
   oracle-xe-dev:
+  container_name: oracle-xe-dev
   image: sath89/oracle-12c
   
   envitonment:

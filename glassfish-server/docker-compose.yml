@@ -1,17 +1,18 @@
 version: '3.2'
 services:
-  jenkins-dev:
-    container_name: jenkins-dev
-    # image: jenkins:2.60.3
+  glassfish-dev:
+    container_name: glassfish-dev
+
     build:
-      context: jenkins/
+      context: glassfish/
       dockerfile: Dockerfile
     privileged: true
-    user: root
+    # user: admin
     
     ports:
-      - 8888:8080
-      - 50000:50000
+      - 9090:8080
+      - 4848:4848
+      - 8181:8181
 
     volumes:
       - /tmp/jenkins:/var/jenkins_home #Remember that, the tmp directory is designed to be wiped on system reboot.
