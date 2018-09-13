@@ -1,24 +1,32 @@
-version: '3.2'
+version: '3'
 
 services:
-  oracle-xe-dev:
-  container_name: oracle-xe-dev
-  image: sath89/oracle-12c
+  oracle-database:
+    container_name: oracle-database
+    image: sath89/oracle-12c
+    # build:
+    #   context: oracle-database/docker-oracle-apex
+    #   dockerfile: Dockerfile
   
-  envitonment:
-    USER: sys
-    PASS: oracle
-    HOST: oracle-database
-    #PORT: 1521
-    SID: XE
-    #HTTP_PORT: 8080
-    IMPORT_FROM_VOLUME: true
-    # IMPDP_OPTIONS: REMAP_TABLESPACE=FOO:BAR
+    environment:
+      USER: sys
+      PASS: oracle
+      HOST: oracle-database
+      DBCA_TOTAL_MEMORY: 1024
+      DB_CONTAINER_NAME: oracle-database
+      PORT: 1521
+      SID: XE
+      HTTP_PORT: 8080
+      # IMPORT_FROM_VOLUME: true
+      # IMPDP_OPTIONS: REMAP_TABLESPACE=FOO:BAR
+      DEBIAN_FRONTEND: noninteractive
+      LD_LIBRARY_PATH: /instantclient_12_1
+      APEX_VERSION: 5.1.2
 
-  ports:
-    - 1521:1521
-    - 8999:8080
+    ports:
+      - "1521:1521"
+      - "8999:8080"
 
-  valume: 
-    - /my/oracle/data:/u01/app/oracle 
-    - /my/oracle/init/SCRIPTSorSQL:/docker-entrypoint-initdb.d
+    volumes: 
+      - /my/oracle/data:/u01/app/oracle 
+      - /my/oracle/init/SCRIPTSorSQL:/docker-entrypoint-initdb.d
